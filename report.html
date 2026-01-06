@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Report a Problem</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f5f6fa;
+      margin: 0;
+      padding: 20px;
+    }
+    .container {
+      max-width: 700px;
+      margin: auto;
+      background: #fff;
+      padding: 25px;
+      border-radius: 12px;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    }
+    h2 {
+      text-align: center;
+      color: #333;
+    }
+    .form-group {
+      margin-bottom: 15px;
+    }
+    label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 6px;
+    }
+    input, select, textarea {
+      width: 100%;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 14px;
+    }
+    textarea {
+      resize: vertical;
+      min-height: 100px;
+    }
+    .form-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    .btn {
+      display: inline-block;
+      background: #007bff;
+      color: #fff;
+      border: none;
+      padding: 12px 20px;
+      border-radius: 8px;
+      cursor: pointer;
+      font-size: 16px;
+    }
+    .btn:hover {
+      background: #0056b3;
+    }
+    .readonly-info {
+      background: #f1f1f1;
+      padding: 10px;
+      border-radius: 8px;
+      margin-bottom: 15px;
+    }
+    .note {
+      font-size: 12px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h2>Report a Problem</h2>
+    <form id="problemForm">
+
+      <!-- Auto-Fetched User Info (Read-only) -->
+      <div class="readonly-info">
+        <p><strong>Name:</strong> John Doe</p>
+        <p><strong>ID:</strong> STU1023</p>
+        <p><strong>Role:</strong> Student</p>
+        <p><strong>Department/Class:</strong> Computer Science</p>
+        <p><strong>Contact:</strong> johndoe@example.com</p>
+      </div>
+
+      <!-- Problem Details -->
+      <div class="form-group">
+        <label for="title">Problem Title</label>
+        <input type="text" id="title" name="title" required>
+      </div>
+
+      <div class="form-group">
+        <label for="category">Category</label>
+        <select id="category" name="category" required>
+          <option value="">-- Select Category --</option>
+          <option>Technical</option>
+          <option>Academic</option>
+          <option>Administrative</option>
+          <option>Facility</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="subCategory">Sub-Category</label>
+        <input type="text" id="subCategory" name="subCategory" placeholder="e.g., Wi-Fi Issue, Marks Entry Error">
+      </div>
+
+      <div class="form-group">
+        <label for="description">Problem Description</label>
+        <textarea id="description" name="description" required></textarea>
+      </div>
+
+      <div class="form-group">
+        <label for="location">Location (e.g., Room, Lab, Portal)</label>
+        <input type="text" id="location" name="location" placeholder="Room 203, Exam Portal, Hostel Block A">
+      </div>
+
+      <div class="form-group">
+        <label for="priority">Priority</label>
+        <select id="priority" name="priority" required>
+          <option value="">-- Select Priority --</option>
+          <option>Low</option>
+          <option>Medium</option>
+          <option>High</option>
+          <option>Critical</option>
+        </select>
+      </div>
+
+      <div class="form-group">
+        <label for="attachments">Attachments</label>
+        <input type="file" id="attachments" name="attachments" multiple>
+        <div class="note">Allowed: Images, PDFs, Docs</div>
+      </div>
+
+      <div class="form-group form-check">
+        <input type="checkbox" id="confidential" name="confidential">
+        <label for="confidential">Mark as Confidential</label>
+      </div>
+
+      <button type="submit" class="btn">Submit Problem</button>
+    </form>
+  </div>
+
+  <script>
+    document.getElementById("problemForm").addEventListener("submit", function(e) {
+      e.preventDefault();
+      
+      // Example payload (normally send to backend via fetch/AJAX)
+      const problemData = {
+        title: document.getElementById("title").value,
+        category: document.getElementById("category").value,
+        subCategory: document.getElementById("subCategory").value,
+        description: document.getElementById("description").value,
+        location: document.getElementById("location").value,
+        priority: document.getElementById("priority").value,
+        confidential: document.getElementById("confidential").checked
+      };
+
+      console.log("Problem Reported:", problemData);
+      alert("✅ Problem reported successfully! You will be notified about updates.");
+      this.reset();
+    });
+  </script>
+</body>
+</html>
+
